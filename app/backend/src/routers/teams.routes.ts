@@ -8,6 +8,14 @@ const teamsRouter = Router();
 const teamsService = new TeamService(TeamsModel);
 const teamsController = new TeamsController(teamsService);
 
-teamsRouter.get('/', (req: Request, res: Response) => teamsController.getAllTeams(req, res));
+teamsRouter.get(
+  '/',
+  (req: Request, res: Response) => teamsController.getAllTeams(req, res),
+);
+
+teamsRouter.get(
+  '/:id',
+  (req: Request, res: Response) => teamsController.getTeamById(req, res),
+);
 
 export default teamsRouter;
