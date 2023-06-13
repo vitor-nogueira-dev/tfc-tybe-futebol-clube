@@ -29,8 +29,19 @@ class MatchesService {
     };
 
     const matches = await this.matchesModel.findAll(options);
-
     return matches as IMatches[];
+  }
+
+  async finishMatch(id: number) {
+    const [, rowsAffected] = await this.matchesModel.update(
+      { inProgress: false },
+      { where: { id }, returning: true },
+    );
+    console.log(rowsAffected, 'rowsAffected');
+
+    if (+rowsAffected === 0) {
+      return null;
+    }
   }
 }
 
