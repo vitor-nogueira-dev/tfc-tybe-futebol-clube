@@ -5,7 +5,7 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 
-import { teamsMock } from './mocks/teamsMock';
+import { teamsMock, teamIdMock } from './mocks/teamsMock';
 
 chai.use(chaiHttp);
 
@@ -17,6 +17,12 @@ describe('Usando o método GET em /teams & /teams/:id', function () {
 
     expect(response.status).to.be.equal(200);
     expect(response.body).to.deep.equal(teamsMock);
+  });
+  it('Retorna a team baseado no ID', async function () {
+    const response = await chai.request(app).get('/teams/1');
+
+    expect(response.status).to.be.equal(200);
+    expect(response.body).to.deep.equal(teamIdMock);
   });
 });
 
