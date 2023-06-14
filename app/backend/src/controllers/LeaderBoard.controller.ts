@@ -20,6 +20,8 @@ export default class UsersController {
 
     const leaderBoardResultAway = JSON.parse(JSON.stringify(leaderBoard));
 
+    leaderBoardResultAway.sort(sortLeaderBoard);
+
     return res.status(200).json(leaderBoardResultAway);
   }
 }

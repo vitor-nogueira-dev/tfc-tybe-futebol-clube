@@ -6,7 +6,6 @@ const querysAway = {
     THEN 3 WHEN away_team_goals = home_team_goals THEN 1 ELSE 0 END) AS UNSIGNED)`,
   string2: `CAST(SUM(CASE WHEN away_team_goals > home_team_goals THEN 1 ELSE 0 END) 
     AS UNSIGNED)`,
-
   string3: `CAST(SUM(CASE WHEN away_team_goals < home_team_goals THEN 1 ELSE 0 END)
      AS UNSIGNED)`,
   string4: `CAST(SUM(CASE WHEN away_team_goals = home_team_goals THEN 1 ELSE 0 END)
@@ -28,6 +27,8 @@ const atributesAway = [[Sequelize.col('awayTeam.team_name'), 'name'],
   [Sequelize.literal(querysAway.string4), 'totalDraws'],
   [Sequelize.literal(querysAway.string3), 'totalLosses'],
   [Sequelize.literal(querysAway.string5), 'goalsFavor'],
-  [Sequelize.literal(querysAway.string6), 'goalsOwn']] as unknown as ProjectionAlias[];
+  [Sequelize.literal(querysAway.string6), 'goalsOwn'],
+  [Sequelize.literal(querysAway.string7), 'goalsBalance'],
+  [Sequelize.literal(querysAway.string8), 'efficiency']] as unknown as ProjectionAlias[];
 
 export default atributesAway;
