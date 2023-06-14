@@ -4,6 +4,7 @@ import MatchesService from '../services/Matches.service';
 import MatchesController from '../controllers/Matches.controller';
 import MatchesModel from '../database/models/MatchesModel';
 import authMiddleware from '../middlewares/auth.middleware';
+import updateGoalsMiddleware from '../middlewares/update.goals.middleware';
 
 const matchesRouter = Router();
 
@@ -19,6 +20,13 @@ matchesRouter.patch(
   '/:id/finish',
   authMiddleware,
   async (req: Request, res: Response) => matchesController.finishMatch(req, res),
+);
+
+matchesRouter.patch(
+  '/:id',
+  authMiddleware,
+  updateGoalsMiddleware,
+  async (req: Request, res: Response) => matchesController.changeMatch(req, res),
 );
 
 export default matchesRouter;

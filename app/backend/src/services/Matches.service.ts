@@ -1,5 +1,5 @@
 import { ModelStatic } from 'sequelize';
-import IMatches from '../Interfaces/IMatches';
+import IMatches, { UpdateGols } from '../Interfaces/IMatches';
 import MatchesModel from '../database/models/MatchesModel';
 import Teams from '../database/models/TeamsModel';
 
@@ -42,6 +42,19 @@ class MatchesService {
     if (+rowsAffected === 0) {
       return null;
     }
+  }
+
+  async changeMatch(id: number, updateGols: UpdateGols) {
+    const [, rowsAffected] = await this.matchesModel.update(
+      updateGols,
+      { where: { id }, returning: true },
+    );
+
+    if (+rowsAffected === 0) {
+      return null;
+    }
+
+    // return updatedMatch as IMatches;
   }
 }
 

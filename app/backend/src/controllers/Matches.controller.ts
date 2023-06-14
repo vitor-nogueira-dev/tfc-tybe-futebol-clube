@@ -27,6 +27,17 @@ class MatchesController {
 
     return res.status(200).json({ message: 'Finished' });
   }
+
+  async changeMatch(req: Request, res: Response): Promise<Response> {
+    const updateGoals = req.body;
+    const { id } = req.params;
+
+    await this.matchService.changeMatch(Number(id), updateGoals);
+
+    // if (!match) return res.status(404).json({ message: 'Match not found' });
+
+    return res.status(200).json({ message: 'Updated' });
+  }
 }
 
 export default MatchesController;
