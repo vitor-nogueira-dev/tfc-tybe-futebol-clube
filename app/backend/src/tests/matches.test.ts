@@ -4,7 +4,7 @@ import * as sinon from 'sinon';
 
 // @ts-ignore
 import chaiHttp = require('chai-http');
-import matches, { allMatches, matchFail, matchesInProgress, updateGoals } from './mocks/matches.mocks';
+import matches, { allMatches, matchFail, matchesInProgress, newMatch, resultCreateMatch, successTeam1, successTeam2, updateGoals } from './mocks/matches.mocks';
 
 import { app } from '../app';
 import MatchesModel from '../database/models/MatchesModel';
@@ -55,39 +55,6 @@ describe('Matches', function () {
       expect(response.status).to.be.equal(200);
       expect(response.body).to.be.deep.equal({ message: 'Finished' });
     });
-    // it('should return status 404 and a message', async () => {
-    //   sinon.stub(jwt, 'verify').callsFake(() => jwtPayload);
-    //   sinon.stub(MatchesModel, 'findOne').resolves(undefined);
-
-    //   const response = await chai.request(app).patch('/matches/60/finish')
-    //     .set('Authorization', 'token-valid');
-
-    //   expect(response.status).to.be.equal(404);
-    //   expect(response.body).to.be.deep.equal({ message: 'Team does not exist' });
-    // });
-  });
-  describe('testing router PATCH /matches/:id', () => {
-    it('should return status 400 and a message', async () => {
-      sinon.stub(jwt, 'verify').callsFake(() => jwtPayload);
-
-      const response = await chai.request(app).patch('/matches/1')
-        .set('Authorization', 'token-valid');
-
-      expect(response.status).to.be.equal(400);
-      expect(response.body).to.be.deep.equal({ message: 'All fields must be filled' });
-    });
-    it('should return status 200 and a message', async () => {
-      sinon.stub(jwt, 'verify').callsFake(() => jwtPayload);
-      sinon.stub(MatchesModel, 'findOne').resolves(allMatches[1] as MatchesModel);
-      sinon.stub(MatchesModel, 'update').resolves([1]);
-
-      const response = await chai.request(app).patch('/matches/1')
-        .set('Authorization', 'token-valid')
-        .send(updateGoals);
-
-      expect(response.status).to.be.equal(200);
-      expect(response.body).to.be.deep.equal({ message: 'Updated' });
-    });
   });
   describe('testing router PATCH /matches/:id', () => {
     it('should return status 400 and a message', async () => {
@@ -113,23 +80,36 @@ describe('Matches', function () {
     });
   });
   describe('testing router POST /matches', () => {
-    it('should return status 400 and a message', async () => {
+    it('Deve retornar 404 e uma mensagem caso não exista algum dos times passados', async () => {
       sinon.stub(jwt, 'verify').callsFake(() => jwtPayload);
+      sinon.stub(TeamsModel, 'findOne')
+        .onFirstCall().resolves(successTeam1.message as TeamsModel)
+        .onSecondCall().resolves(undefined);
 
-      const response = await chai.request(app).post('/matches').set('Authorization', 'token-valid');
+      const response = await chai.request(app).post('/matches')
+        .set('Authorization', 'token-valid')
+        .send(matchFail);
 
-      expect(response.status).to.be.equal(400);
-      expect(response.body).to.be.deep.equal({ message: 'All fields must be filled' });
+      expect(response.status).to.be.equal(404);
+      expect(response.body).to.be.deep.equal({ message: 'There is no team with such id!' });
     });
-    it('should return status 422 and a message', async () => {
+    it('Deve retornar 201 e o novo time criado', async () => {
       sinon.stub(jwt, 'verify').callsFake(() => jwtPayload);
 
-        const response = await chai.request(app).post('/matches')
-          .set('Authorization', 'token-valid')
-          .send(matchFail);
+      const createMatch = { ...newMatch, inProgress: true };
+      const resolvedCreateMatch = MatchesModel.build(createMatch)
+      const resolvedResultCreateMatch = MatchesModel.build(resultCreateMatch)
+      sinon.stub(MatchesModel, 'create').resolves(resolvedCreateMatch);
+      sinon.stub(MatchesModel, 'findOne').resolves(resolvedResultCreateMatch);
 
-        expect(response.status).to.be.equal(422);
-        expect(response.body).to.be.deep.equal({ message: 'It is not possible to create a match with two equal teams' });
+
+      const response = await chai.request(app).post('/matches')
+        .set('Authorization', 'token-valid')
+        .send(newMatch);
+
+      const { id, ...rest } = response.body;
+      expect(response.status).to.be.equal(201);
+      expect(response.body).to.be.deep.equal({ ...rest, id: 51 });
     });
   });
 })

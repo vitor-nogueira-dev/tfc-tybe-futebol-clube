@@ -42,7 +42,7 @@ class MatchesController {
 
   async createMatch(req: Request, res: Response): Promise<Response> {
     const newMatch = req.body;
-    console.log(newMatch, 'newMatch');
+    // console.log(newMatch, 'newMatch');
 
     const validate = validateMatch(newMatch);
     if (validate) { return res.status(validate.status).json({ message: validate.message }); }

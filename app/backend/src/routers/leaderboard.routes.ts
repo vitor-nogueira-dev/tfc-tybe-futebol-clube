@@ -9,6 +9,11 @@ const leaderBoardService = new LeaderBoardService(LeaderBoardModel);
 const boardController = new LeaderBoardController(leaderBoardService);
 
 leaderdRouter.get(
+  '/',
+  (req: Request, res: Response) => boardController.getLeaderBoardAll(req, res),
+);
+
+leaderdRouter.get(
   '/home',
   (req: Request, res: Response) => boardController.getLeaderBoardHome(req, res),
 );
@@ -16,11 +21,6 @@ leaderdRouter.get(
 leaderdRouter.get(
   '/away',
   (req: Request, res: Response) => boardController.getLeadeerBoardAway(req, res),
-);
-
-leaderdRouter.get(
-  '/',
-  (req: Request, res: Response) => boardController.getLeaderBoardAll(req, res),
 );
 
 export default leaderdRouter;

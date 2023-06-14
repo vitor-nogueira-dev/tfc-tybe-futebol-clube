@@ -57,13 +57,11 @@ describe('Usando o método POST em /login', function () {
     expect(response.status).to.be.equal(401);
     expect(response.body).to.have.property("message", 'Invalid email or password');
   });
-
-  // passa rodando somente ele, quando roda todos ele n funciona
-  // it('should return an error message if the email field is not in the database', async function () {
-  //   const response = await chai.request(app)
-  //     .post('/login')
-  //     .send(emailInexistInDB);
-  //   expect(response.status).to.be.equal(401);
-  //   expect(response.body).to.have.property("message", 'Invalid email or password');
-  // });
+  it('shoul return status 401 and message token not found', async function () {
+    const response = await chai.request(app)
+      .get('/login/role');
+    console.log(response.body, response.status, 'response')
+    expect(response.status).to.be.equal(401);
+    expect(response.body).to.have.property("message", 'Token not found');
+  })
 });

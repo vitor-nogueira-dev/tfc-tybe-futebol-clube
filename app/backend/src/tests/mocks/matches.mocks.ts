@@ -674,44 +674,79 @@ const matches = [
 ]
 
 export const matchesInProgress = [
-  {
-    homeTeamId: 3,
-    homeTeamGoals: 0,
-    awayTeamId: 2,
-    awayTeamGoals: 0,
-    inProgress: true,
-  }
+	{
+		homeTeamId: 3,
+		homeTeamGoals: 0,
+		awayTeamId: 2,
+		awayTeamGoals: 0,
+		inProgress: true,
+	}
 ]
 
 export const allMatches = [
-  {
-    homeTeamId: 16,
-    homeTeamGoals: 1,
-    awayTeamId: 8,
-    awayTeamGoals: 1,
-    inProgress: false,
-  },
-  {
-    homeTeamId: 9,
-    homeTeamGoals: 1,
-    awayTeamId: 14,
-    awayTeamGoals: 1,
-    inProgress: false,
-  }
+	{
+		homeTeamId: 16,
+		homeTeamGoals: 1,
+		awayTeamId: 8,
+		awayTeamGoals: 1,
+		inProgress: false,
+	},
+	{
+		homeTeamId: 9,
+		homeTeamGoals: 1,
+		awayTeamId: 14,
+		awayTeamGoals: 1,
+		inProgress: false,
+	}
 ]
 
 export const updateGoals = {
-  homeTeamGoals: 3,
-  awayTeamGoals: 1
+	homeTeamGoals: 3,
+	awayTeamGoals: 1
 }
 
 export const matchFail = {
-  homeTeamId: 4,
-  homeTeamGoals: 3,
-  awayTeamId: 4,
-  awayTeamGoals: 0,
+	homeTeamId: 0,
+	homeTeamGoals: 5,
+	awayTeamId: 7,
+	awayTeamGoals: 1,
 }
 
+export const newMatch = {
+	homeTeamId: 2,
+	homeTeamGoals: 5,
+	awayTeamId: 7,
+	awayTeamGoals: 1,
+}
+
+export const team1 = {
+	id: 1,
+	teamName: 'Flamengo'
+}
+
+export const team2 = {
+	id: 2,
+	teamName: 'Fluminense'
+}
+
+export const successTeam1 = {
+	type: null,
+	message: team1
+}
+
+export const successTeam2 = {
+	type: null,
+	message: team2
+}
+
+export const resultCreateMatch = {
+	"id": 51,
+	"homeTeamId": 1,
+	"homeTeamGoals": 2,
+	"awayTeamId": 2,
+	"awayTeamGoals": 2,
+	"inProgress": true
+}
 
 export default matches;
 
