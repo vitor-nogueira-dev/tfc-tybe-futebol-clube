@@ -24,6 +24,8 @@ const attributes = [[Sequelize.col('homeTeam.team_name'), 'name'],
   [Sequelize.literal(queryHome.string4), 'totalDraws'],
   [Sequelize.literal(queryHome.string3), 'totalLosses'],
   [Sequelize.literal(queryHome.string5), 'goalsFavor'],
-  [Sequelize.literal(queryHome.string6), 'goalsOwn']] as unknown as ProjectionAlias[];
+  [Sequelize.literal(queryHome.string6), 'goalsOwn'],
+  [Sequelize.literal(queryHome.string7), 'goalsBalance'],
+  [Sequelize.literal(queryHome.string8), 'efficiency']] as unknown as ProjectionAlias[];
 
 export default attributes;
