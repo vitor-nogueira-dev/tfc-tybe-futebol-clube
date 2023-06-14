@@ -3,7 +3,7 @@ import UsersModel from '../database/models/UserModel';
 import UsersController from '../controllers/User.controller';
 import UsersService from '../services/User.service';
 import authMiddleware from '../middlewares/auth.middleware';
-import AuthController from '../controllers/AuthController';
+import AuthController from '../controllers/Auth.controller';
 
 const usersRouter = Router();
 
