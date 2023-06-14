@@ -18,4 +18,9 @@ leaderdRouter.get(
   (req: Request, res: Response) => boardController.getLeadeerBoardAway(req, res),
 );
 
+leaderdRouter.get(
+  '/',
+  (req: Request, res: Response) => boardController.getLeaderBoardAll(req, res),
+);
+
 export default leaderdRouter;
