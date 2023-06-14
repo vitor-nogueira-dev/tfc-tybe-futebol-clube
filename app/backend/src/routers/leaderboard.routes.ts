@@ -13,4 +13,9 @@ leaderdRouter.get(
   (req: Request, res: Response) => boardController.getLeaderBoardHome(req, res),
 );
 
+leaderdRouter.get(
+  '/away',
+  (req: Request, res: Response) => boardController.getLeadeerBoardAway(req, res),
+);
+
 export default leaderdRouter;

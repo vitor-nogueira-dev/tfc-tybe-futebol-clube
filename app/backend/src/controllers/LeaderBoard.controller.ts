@@ -14,4 +14,12 @@ export default class UsersController {
 
     return res.status(200).json(leaderBoardResultHome);
   }
+
+  async getLeadeerBoardAway(_req: Request, res: Response): Promise<object> {
+    const leaderBoard = await this.leader.getLeaderBoardAway();
+
+    const leaderBoardResultAway = JSON.parse(JSON.stringify(leaderBoard));
+
+    return res.status(200).json(leaderBoardResultAway);
+  }
 }
