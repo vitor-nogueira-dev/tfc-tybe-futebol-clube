@@ -21,13 +21,11 @@ export interface UpdateGols {
   awayTeamGoals: number
 }
 
-// export interface IMatchesService {
-//   id: number,
-//   inProgress: boolean,
-//   homeTeamId: number,
-//   homeTeamGoals: number,
-//   awayTeamId: number,
-//   awayTeamGoals: number,
-// }
+export interface IMatchBody {
+  homeTeamId: number,
+  awayTeamId: number,
+  homeTeamGoals: number,
+  awayTeamGoals: number,
+}
 
 export default IMatches;
