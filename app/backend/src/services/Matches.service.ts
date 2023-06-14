@@ -1,5 +1,5 @@
 import { ModelStatic } from 'sequelize';
-import IMatches, { UpdateGols } from '../Interfaces/IMatches';
+import IMatches, { IMatchesBody, UpdateGols } from '../Interfaces/IMatches';
 import MatchesModel from '../database/models/MatchesModel';
 import Teams from '../database/models/TeamsModel';
 
@@ -53,8 +53,12 @@ class MatchesService {
     if (+rowsAffected === 0) {
       return null;
     }
+  }
 
-    // return updatedMatch as IMatches;
+  async createMatch(newMatch: IMatchesBody) {
+    const match = { ...newMatch, inProgress: true };
+    const created = await this.matchesModel.create(match);
+    return this.matchesModel.findOne({ where: { id: created.dataValues.id } });
   }
 }
 

@@ -29,4 +29,10 @@ matchesRouter.patch(
   async (req: Request, res: Response) => matchesController.changeMatch(req, res),
 );
 
+matchesRouter.post(
+  '/',
+  authMiddleware,
+  async (req: Request, res: Response) => matchesController.createMatch(req, res),
+);
+
 export default matchesRouter;

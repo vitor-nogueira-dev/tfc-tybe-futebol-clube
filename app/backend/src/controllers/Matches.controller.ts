@@ -38,6 +38,15 @@ class MatchesController {
 
     return res.status(200).json({ message: 'Updated' });
   }
+
+  async createMatch(req: Request, res: Response): Promise<Response> {
+    const newMatch = req.body;
+    console.log(newMatch, 'newMatch');
+
+    const match = await this.matchService.createMatch(newMatch);
+
+    return res.status(201).json(match);
+  }
 }
 
 export default MatchesController;
