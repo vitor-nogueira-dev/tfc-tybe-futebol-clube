@@ -74,7 +74,7 @@ E rode o comando `npm test` para rodar todos os testes ou `npm run test:coverage
 <details>
   <summary>💡 Stacks utilizadas</summary>
 
-`backend` </br>
+# Backend </br>
 Linguagem de programação: ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)&nbsp; </br>
 Estrutura de desenvolvimento: ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)&nbsp; </br>
 Organização do código: ![MVC](https://img.shields.io/badge/MVC-323330?style=for-the-badge&logo=mvc&logoColor=white)&nbsp; </br>
@@ -89,7 +89,7 @@ Biblioteca de stubs: ![Sinon](https://img.shields.io/badge/Sinon-323330?style=fo
 Ferramenta de análise de código estática: ![ESLint](https://img.shields.io/badge/ESLint-00000F?style=for-the-badge&logo=eslint&logoColor=white)&nbsp; </br>
 Ferramenta de formatação de código: ![Prettier](https://img.shields.io/badge/Prettier-00000F?style=for-the-badge&logo=prettier&logoColor=white)&nbsp; </br>
 
-`frontend` </br>
+# Frontend </br>
 Linguagem de programação: ![Javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)&nbsp; </br>
 Framework de desenvolvimento: ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp; </br>
 Linguagem de marcação: ![HTML5](https://img.shields.io/badge/HTML5-323330?style=for-the-badge&logo=html5&logoColor=white)&nbsp; </br>
